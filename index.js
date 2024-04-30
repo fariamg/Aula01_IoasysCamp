@@ -24,10 +24,11 @@ app.get('/users', async (req, res) => {
   res.json(users);
 });
 
-// Endpoint de detalhe do usuário logado (expondo senha)
 app.get('/profile', async (req, res) => {
   const { username } = req.query;
-  const user = await User.findOne({ where: { username: username ?? null } });
+  const user = await User.findOne({ where: { username: username ?? null },
+      attributes: { exclude: ['password']}
+    });
   if (user) {
     res.json(user);
   } else {
