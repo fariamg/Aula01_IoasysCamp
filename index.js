@@ -19,9 +19,8 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Endpoint de listagem de usuários (expondo dados sensíveis)
 app.get('/users', async (req, res) => {
-  const users = await User.findAll({ attributes: ['id', 'username', 'password'] });
+  const users = await User.findAll({ attributes: ['username'] });
   res.json(users);
 });
 
